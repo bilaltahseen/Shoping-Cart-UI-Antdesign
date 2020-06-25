@@ -4,7 +4,7 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 const ProductCard = () => {
   const [inCart, setCart] = React.useState(false);
   return (
-    <Col md={7}>
+    <Col md={8}>
       <Card
         style={{ padding: 10 }}
         cover={

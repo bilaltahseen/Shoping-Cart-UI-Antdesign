@@ -9,7 +9,14 @@ const Home = () => {
       <Layout style={{ padding: '24px 0' }}>
         <Content className='site-layout-background'>
           <center>
-            <Row gutter={[40, 16]} className='products-row'>
+            <Row justify='start' gutter={[40, 16]} className='products-row'>
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
               <ProductCard />
             </Row>
           </center>
