@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { ShoppingCartOutlined, HomeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Navigation = (props) => {
   return (
@@ -14,7 +15,7 @@ const Navigation = (props) => {
         </Menu.Item>
         <Menu.Item key='2'>
           <Link to='/cart'>
-            Cart <ShoppingCartOutlined /> <strong>(1)</strong>
+            Cart <ShoppingCartOutlined /> <strong>({props.cart.length})</strong>
           </Link>
         </Menu.Item>
         <Menu.Item key='3'>
@@ -24,5 +25,8 @@ const Navigation = (props) => {
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
 
-export default Navigation;
+export default connect(mapStateToProps)(Navigation);

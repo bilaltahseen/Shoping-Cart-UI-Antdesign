@@ -1,10 +1,15 @@
 import React from 'react';
 import { Card, Col, Row, Button, Divider, Badge } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-const ProductCard = () => {
+import { connect } from 'react-redux';
+const ProductCard = (props) => {
   const [inCart, setCart] = React.useState(false);
+  const addCart = (item) => {
+    props.add_cart(item);
+    setCart(true);
+  };
   return (
-    <Col md={8}>
+    <Col key={props.itemId} md={8}>
       <Card
         style={{ padding: 10 }}
         cover={
@@ -17,9 +22,8 @@ const ProductCard = () => {
         }
       >
         <Card.Meta
-          title={<h2>Europe Street Beat</h2>}
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+          title={<h2>{props.itemName}</h2>}
+          description={props.itemDescription}
         />
         <br></br>
         <Divider orientation='center'>Price</Divider>
@@ -32,14 +36,27 @@ const ProductCard = () => {
             textAlign: 'center',
           }}
         >
-          $ 300.00<span style={{ fontSize: '16px' }}>/month</span>
+          $ {props.itemPrice}
+          <span style={{ fontSize: '16px' }}>/month</span>
         </p>
         <Row justify='end'>
           <Col>
             <Button
-              disabled={inCart}
-              onClick={() => setCart(true)}
-              type='primary '
+              disabled={
+                props.cart
+                  ? props.cart.filter((elem) => elem.itemId === props.itemId)
+                      .length
+                  : false
+              }
+              onClick={() =>
+                addCart({
+                  itemId: props.itemId,
+                  itemName: props.itemName,
+                  itemPrice: props.itemPrice,
+                  itemDescription: props.itemDescription,
+                })
+              }
+              type='primary'
             >
               Add to cart
             </Button>
@@ -50,4 +67,12 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  add_cart: (item) => dispatch({ type: 'ADD_PRODUCT', payload: item }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
