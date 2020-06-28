@@ -35,6 +35,7 @@ const About = () => {
               sm={24}
             >
               <img
+                alt='Shopping Cart '
                 style={{ paddingBottom: 20 }}
                 src='https://img.icons8.com/color/240/000000/shopaholic.png'
               />

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route as Routes, Switch } from 'react-router-dom';
 
-import { Layout, Menu, Breadcrumb, Row, Col, Card, Space, Divider } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Layout, Divider } from 'antd';
+
 import Navigation from './Components/Navigation';
 
-const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export const Router = () => {
   return (

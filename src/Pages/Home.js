@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Card, Button, Divider } from 'antd';
+import { Layout, Row, Divider } from 'antd';
 import ProductCard from '../Components/ProductCard';
 
 const { Content } = Layout;

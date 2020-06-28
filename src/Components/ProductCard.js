@@ -1,13 +1,11 @@
 import React from 'react';
-import { Card, Col, Row, Button, Divider, Badge, notification } from 'antd';
-import { ShoppingCartOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Button, Divider, notification } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 const ProductCard = (props) => {
-  const [inCart, setCart] = React.useState(false);
   const addCart = (item) => {
     props.add_cart(item);
-    setCart(true);
     openNotification();
   };
 
@@ -29,7 +27,7 @@ const ProductCard = (props) => {
       duration: 10,
     });
   };
-  console.log(props);
+
   return (
     <Col key={props.itemId} md={8}>
       <Card

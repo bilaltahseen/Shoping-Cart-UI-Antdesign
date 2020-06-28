@@ -19,7 +19,7 @@ const Cart = (props) => {
       title: 'Id',
       dataIndex: 'itemId',
       key: 'itemId',
-      render: (text) => <a>{text}</a>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: 'Name',
