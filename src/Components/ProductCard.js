@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Row, Button, Divider, Badge, notification } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, DeleteOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 const ProductCard = (props) => {
@@ -17,6 +17,7 @@ const ProductCard = (props) => {
         color: '#1DA57A',
         fontWeight: 'bold',
         opacity: 0.9,
+        cursor: 'pointer',
       },
       placement: 'bottomRight',
       message: 'Item Added',
@@ -39,7 +40,7 @@ const ProductCard = (props) => {
             height='320px'
             width='280px'
             alt='example'
-            src='https://www.kvt-fastening.ch/-/media/kvt/products/brands/loctite/loctite-neue-bilder/loctite-243-320-x-280.png?h=280&w=320&la=en&hash=A094DB04A60DDB326DDD5DA6998B203254282028'
+            src={props.itemImage}
           />
         }
       >
@@ -61,9 +62,10 @@ const ProductCard = (props) => {
           $ {props.itemPrice}
           <span style={{ fontSize: '16px' }}>/month</span>
         </p>
-        <Row justify='end'>
+        <Row gutter={[10]} className='add-cart-btn-row'>
           <Col>
             <Button
+              title='Add item to cart'
               disabled={
                 props.cart
                   ? props.cart.filter((elem) => elem.itemId === props.itemId)
@@ -83,6 +85,22 @@ const ProductCard = (props) => {
               Add to cart
             </Button>
           </Col>
+          <Col>
+            <Button
+              title='Remove item from cart'
+              disabled={
+                !(props.cart
+                  ? props.cart.filter((elem) => elem.itemId === props.itemId)
+                      .length
+                  : false)
+              }
+              onClick={() => props.remove_single(props.itemId)}
+              type='primary'
+              danger
+            >
+              <DeleteOutlined />
+            </Button>
+          </Col>
         </Row>
       </Card>
     </Col>
@@ -96,6 +114,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   add_cart: (item) => dispatch({ type: 'ADD_PRODUCT', payload: item }),
+  remove_single: (itemId) =>
+    dispatch({ type: 'REMOVE_SINGLE', payload: itemId }),
   setUrl: (urlKey) => dispatch({ type: 'SET_URL', payload: urlKey }),
 });
 

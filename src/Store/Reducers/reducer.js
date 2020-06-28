@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
       };
     case 'SET_URL':
       return { ...state, url: action.payload };
+    case 'REMOVE_SINGLE':
+      return {
+        ...state,
+        cart: state.cart.filter((elem) => elem.itemId !== action.payload),
+      };
     default:
       return {
         ...state,
