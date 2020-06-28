@@ -50,7 +50,7 @@ const Cart = (props) => {
           <br></br>
           <Row justify='end'>
             <Col>
-              <Button onClick={props.removeCart} danger>
+              <Button type='default' onClick={props.removeCart} danger>
                 <DeleteOutlined />
                 &nbsp;
                 <span>Delete Cart</span>
