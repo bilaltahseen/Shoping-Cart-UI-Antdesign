@@ -8,7 +8,7 @@ const Home = () => {
     {
       itemId: 1,
       itemName: 'Nike Shoe',
-      itemPrice: 129.99,
+      itemPrice: 123.99,
       itemDescription:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     },

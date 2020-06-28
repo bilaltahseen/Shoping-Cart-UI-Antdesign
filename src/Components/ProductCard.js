@@ -1,16 +1,38 @@
 import React from 'react';
-import { Card, Col, Row, Button, Divider, Badge } from 'antd';
+import { Card, Col, Row, Button, Divider, Badge, notification } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 const ProductCard = (props) => {
   const [inCart, setCart] = React.useState(false);
   const addCart = (item) => {
     props.add_cart(item);
     setCart(true);
+    openNotification();
   };
+
+  const openNotification = () => {
+    notification.open({
+      style: {
+        color: '#1DA57A',
+        fontWeight: 'bold',
+        opacity: 0.9,
+      },
+      placement: 'bottomRight',
+      message: 'Item Added',
+      description: `${props.itemName} is added to your cart.`,
+      onClick: () => {
+        window.location.replace('/cart');
+        props.setUrl('2');
+      },
+      duration: 10,
+    });
+  };
+  console.log(props);
   return (
     <Col key={props.itemId} md={8}>
       <Card
+        hoverable
         style={{ padding: 10 }}
         cover={
           <img
@@ -69,10 +91,15 @@ const ProductCard = (props) => {
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
+  url_key: state.url_key,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   add_cart: (item) => dispatch({ type: 'ADD_PRODUCT', payload: item }),
+  setUrl: (urlKey) => dispatch({ type: 'SET_URL', payload: urlKey }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ProductCard));

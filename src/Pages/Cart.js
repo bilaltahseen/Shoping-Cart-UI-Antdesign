@@ -11,25 +11,26 @@ import {
   Button,
 } from 'antd';
 import { CreditCardOutlined, DeleteOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 const { Content } = Layout;
-const Cart = () => {
+const Cart = (props) => {
   const columns = [
     {
       title: 'Id',
-      dataIndex: 'Product',
-      key: 'Product',
+      dataIndex: 'itemId',
+      key: 'itemId',
       render: (text) => <a>{text}</a>,
     },
     {
       title: 'Name',
-      dataIndex: 'ProductName',
-      key: 'ProductName',
+      dataIndex: 'itemName',
+      key: 'itemName',
     },
 
     {
       title: 'Price',
-      key: 'Price',
-      dataIndex: 'Price',
+      key: 'itemPrice',
+      dataIndex: 'itemPrice',
       render: (text, record) => (
         <Space size='middle'>
           <p>$ {text}</p>
@@ -38,60 +39,8 @@ const Cart = () => {
     },
   ];
 
-  const data = [
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-
-    {
-      Product: '1',
-      ProductName: 'Apple Smart Watch',
-
-      Price: 12.99,
-    },
-  ];
-  const total = [];
-  data.forEach((elem) => total.push(elem.Price));
+  const total = [0];
+  props.cart.forEach((elem) => total.push(elem.itemPrice));
 
   return (
     <div>
@@ -101,7 +50,7 @@ const Cart = () => {
           <br></br>
           <Row justify='end'>
             <Col>
-              <Button danger>
+              <Button onClick={props.removeCart} danger>
                 <DeleteOutlined />
                 &nbsp;
                 <span>Delete Cart</span>
@@ -109,10 +58,10 @@ const Cart = () => {
             </Col>
           </Row>
           <h2>
-            Total Items <strong>({total.length})</strong>
+            Total Items <strong>({props.cart.length})</strong>
           </h2>
           <br></br>
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <Table columns={columns} dataSource={props.cart} pagination={false} />
           <Divider orientation='right'>
             <p>Billing</p>
           </Divider>
@@ -155,4 +104,12 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  removeCart: () => dispatch({ type: 'DELETE_CART' }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

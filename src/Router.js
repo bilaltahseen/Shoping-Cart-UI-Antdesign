@@ -35,7 +35,7 @@ export const Router = () => {
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
+            Bilal Tahseen ©2020 Created with Ant UED
           </Footer>
         </Layout>
       </React.Suspense>
