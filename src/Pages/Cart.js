@@ -33,14 +33,14 @@ const Cart = (props) => {
       dataIndex: 'itemPrice',
       render: (text, record) => (
         <Space size='middle'>
-          <p>$ {text}</p>
+          <p>{text}</p>
         </Space>
       ),
     },
   ];
 
   const total = [0];
-  props.cart.forEach((elem) => total.push(elem.itemPrice));
+  props.cart.forEach((elem) => total.push(+elem.itemPrice.replace('$', '')));
 
   return (
     <div>
