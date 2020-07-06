@@ -57,8 +57,7 @@ const ProductCard = (props) => {
             textAlign: 'center',
           }}
         >
-          $ {props.itemPrice}
-          <span style={{ fontSize: '16px' }}>/month</span>
+          {props.itemPrice}
         </p>
         <Row gutter={[10]} className='add-cart-btn-row'>
           <Col>
