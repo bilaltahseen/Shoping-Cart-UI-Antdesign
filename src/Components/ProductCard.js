@@ -21,7 +21,7 @@ const ProductCard = (props) => {
       message: 'Item Added',
       description: `${props.itemName} is added to your cart.`,
       onClick: () => {
-        window.location.replace('/cart');
+        props.history.push('/cart');
         props.setUrl('2');
       },
       duration: 10,
