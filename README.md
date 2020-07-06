@@ -1,4 +1,4 @@
-# React Shopping Cart
+# Shoe Store App
 
 ## Technologies:
 
