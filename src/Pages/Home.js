@@ -226,8 +226,8 @@ const Home = () => {
     <div>
       <Layout style={{ padding: '24px 0' }}>
         <Content className='site-layout-background'>
-          <h1>Rent a Car</h1>
-          <Divider orientation='left'>How to rent</Divider>
+          <h1>Buy Online</h1>
+          <Divider orientation='left'>How to buy</Divider>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
