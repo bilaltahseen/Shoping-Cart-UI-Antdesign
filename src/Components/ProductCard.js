@@ -20,11 +20,7 @@ const ProductCard = (props) => {
       placement: 'bottomRight',
       message: 'Item Added',
       description: `${props.itemName} is added to your cart.`,
-      onClick: () => {
-        props.history.push('/cart');
-        props.setUrl('2');
-      },
-      duration: 10,
+      duration: 4,
     });
   };
 
