@@ -6,7 +6,7 @@ import { Router } from './Router';
 import { connect } from 'react-redux';
 
 function App(props) {
-  React.useEffect(props.setUrl('1'), [props]);
+  React.useEffect(()=>props.setUrl('1'), [props]);
   return (
     <React.Fragment>
       <Router />
